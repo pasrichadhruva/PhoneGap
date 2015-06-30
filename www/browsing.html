@@ -30,13 +30,24 @@
         <title>Hello World</title>
     </head>
     <body>
-        <div class="centre">
-            <form action="browsing.html" method="GET">
-                Enter URL here:<br>
-                <input type="text" name="url" />
-                <br>
-                <input type="submit" value="go" />
+        <div>
+            <form name="browse">
+                <input type="hidden" name="graburl">
             </form>
+            <script type="text/javascript">
+                var locate = window.location;
+                document.browse.graburl.value = locate;
+                var text = document.browse.graburl.value;
+                function pullURL(str)
+                {
+                    first = str.indexOf("=") + 1;
+                    last = str.length;
+                    return(str.substring(first,last));
+                }
+                document.write("<iframe src=\"http://"+pullURL(text)+"\"style=\"border:0;position:absolute; top:0; left:0; right:0; bottom:0; width:100%; height:100%;\" scrolling=\"yes\"></iframe>");
+
+            </script>
+            
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
